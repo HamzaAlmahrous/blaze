@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "600786116271",
+    "project_id": "blaze-2862a",
+    "storage_bucket": "blaze-2862a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:600786116271:android:d2b5507611801108e83e5a",
+        "android_client_info": {
+          "package_name": "com.example.blaze"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "600786116271-29f0o9c66bvtrg2tm55fng67db9e8arn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.blaze",
+            "certificate_hash": "63dd48cccccbf88311501efea8a3380a5067c8fe"
+          }
+        },
+        {
+          "client_id": "600786116271-n99fcl532662rfpbt904m7qaglvgv7h7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWWKT1Q_Kyahy5m3lOvBm1CjukNR-qS48"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "600786116271-n99fcl532662rfpbt904m7qaglvgv7h7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
