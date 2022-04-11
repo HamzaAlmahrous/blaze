@@ -29,7 +29,6 @@ class CommentScreen extends StatelessWidget {
                 Navigator.pop(context);
               },
               title: 'Comments'),
-          backgroundColor: defaultColor4,
           body: state is SocialGetCommentsLoadingState
               ? const Center(child: CircularProgressIndicator())
               : Padding(
@@ -172,6 +171,7 @@ Widget commentItem(SocialComment comment, context, String postId) {
   return Card(
     clipBehavior: Clip.antiAliasWithSaveLayer,
     elevation: 5.0,
+    color: SocialCubit.get(context).isDark ? Color.fromARGB(255, 40, 51, 77): Colors.white,
     margin: const EdgeInsets.symmetric(horizontal: 8.0),
     child: Padding(
       padding: const EdgeInsets.all(10.0),
@@ -193,9 +193,7 @@ Widget commentItem(SocialComment comment, context, String postId) {
                       children: [
                         Text(
                           comment.name,
-                          style: const TextStyle(
-                            height: 1.4,
-                          ),
+                          style: Theme.of(context).textTheme.bodyText1
                         ),
                         const SizedBox(width: 5.0),
                         const Icon(

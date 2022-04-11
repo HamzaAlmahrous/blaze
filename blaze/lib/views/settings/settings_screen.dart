@@ -23,11 +23,21 @@ class SettingsScreen extends StatelessWidget {
           body: Padding(
             padding: const EdgeInsets.all(8.0),
             child: SingleChildScrollView(
-                child: Column(
-              children: [defaultButton(function: () {
-                SocialCubit.get(context).logOut(context);
-              }, text: 'log out')],
-            )),
+              child: Column(
+                children: [
+                  defaultButton(
+                      function: () {
+                        SocialCubit.get(context).logOut(context);
+                      },
+                      text: 'log out',
+                  ),
+                  const SizedBox(height: 10.0),
+                  defaultButton(function: (){
+                     SocialCubit.get(context).changeAppMode(fromShared: !SocialCubit.get(context).isDark);
+                  }, text: SocialCubit.get(context).isDark ? 'switch to light mode' : 'switch to dark mode' ),
+                ],
+              ),
+            ),
           ),
         );
       },

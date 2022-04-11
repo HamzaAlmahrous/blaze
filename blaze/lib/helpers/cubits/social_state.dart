@@ -191,4 +191,8 @@ class SignOutErrorState extends SocialStates {
   SignOutErrorState(this.error);
 }
 
+//theme
+
+class SocialAppChangeModeState extends SocialStates {}
+
 

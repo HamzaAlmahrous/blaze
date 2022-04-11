@@ -84,10 +84,8 @@ class UserItem extends StatelessWidget {
               child: Row(
                 children: [
                   Text(
-                    cubit.allUsers[index].name,
-                    style: const TextStyle(
-                      height: 1.4,
-                    ),
+                    cubit.allUsers[index].name,                 
+                    style: Theme.of(context).textTheme.bodyText1
                   ),
                   const SizedBox(width: 5.0),
                   const Icon(

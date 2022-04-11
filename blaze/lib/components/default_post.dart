@@ -13,7 +13,7 @@ import 'package:iconsax/iconsax.dart';
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: Container(
-        color: Colors.white,
+        color: SocialCubit.get(context).isDark ? Color(0xFF202A44) : Colors.white,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -32,9 +32,9 @@ import 'package:iconsax/iconsax.dart';
                         children: [
                           Text(
                             post.name,
-                            style: const TextStyle(
-                              height: 1.4,
-                            ),
+                            style: Theme.of(context)
+                            .textTheme
+                            .bodyText1!.copyWith(fontSize: 15.0),
                           ),
                           const SizedBox(width: 5.0),
                           const Icon(
@@ -87,7 +87,8 @@ import 'package:iconsax/iconsax.dart';
                   padding: const EdgeInsets.only(top: 8.0),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
-                    child: Image(
+                    child: FadeInImage(
+                              placeholder: const AssetImage('assets/images/tinder_3.png'),
                       image: NetworkImage(post.postImage!),
                     ),
                   ),
@@ -231,7 +232,7 @@ import 'package:iconsax/iconsax.dart';
                         },
                         icon: const Icon(
                           IconBroken.Image,
-                          color: Colors.black,
+                          color: defaultColor1,
                           size: 20,
                         ),
                       ),

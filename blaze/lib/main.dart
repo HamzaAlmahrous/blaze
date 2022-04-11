@@ -48,6 +48,13 @@ void main(List<String> args) async {
   //onBoarding = CacheHelper.getData(key: 'onBoarding');
   uId = CacheHelper.getData(key: 'uId');
   lang = CacheHelper.getData(key: 'lang');
+  if (CacheHelper.getData(key: 'isDark') == null){
+    CacheHelper.saveData(key: 'isDark', value: false);
+  }
+  
+  bool isDark = CacheHelper.getData(key: 'isDark');
+  print(isDark);
+
   lang ??= 'en';
   //print(uId);
 
@@ -56,7 +63,7 @@ void main(List<String> args) async {
   BlocOverrides.runZoned(
     () {
       runApp(
-        MyApp(startWidget: startWidget),
+        MyApp(startWidget: startWidget, isDark: isDark),
       );
     },
     blocObserver: MyBlocObserver(),
@@ -65,14 +72,15 @@ void main(List<String> args) async {
 
 class MyApp extends StatelessWidget {
   final Widget startWidget;
-  const MyApp({Key? key, required this.startWidget}) : super(key: key);
+  final bool isDark;
+  const MyApp({Key? key, required this.startWidget, required this.isDark}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-            create: (context) => SocialCubit()..getAllUsers()..getPosts()..getUserData()..getFollowers(),
+            create: (context) => SocialCubit()..changeAppMode(fromShared: isDark)..getAllUsers()..getPosts()..getUserData()..getFollowers(),
         )
       ],
       child: BlocConsumer<SocialCubit, SocialStates>(
@@ -82,7 +90,7 @@ class MyApp extends StatelessWidget {
               debugShowCheckedModeBanner: false,
               theme: lightTheme(),
               darkTheme: darkTheme(),
-              themeMode: ThemeMode.light,
+              themeMode: SocialCubit.get(context).isDark ? ThemeMode.dark : ThemeMode.light,
               home: startWidget,
               routes: {
                 '/login': (context) => SocialLogin(),

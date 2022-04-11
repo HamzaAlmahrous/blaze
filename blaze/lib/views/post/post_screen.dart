@@ -1,3 +1,4 @@
+import 'package:blaze/components/const.dart';
 import 'package:blaze/components/default_app_bar.dart';
 import 'package:blaze/components/styles/icon_broken.dart';
 import 'package:blaze/helpers/cubits/social_cubit.dart';
@@ -63,9 +64,7 @@ class NewPostScreen extends StatelessWidget {
                   const SizedBox(width: 15.0),
                   Text(
                     cubit.user.name,
-                    style: const TextStyle(
-                      height: 1.4,
-                    ),
+                    style: Theme.of(context).textTheme.bodyText1,
                   ),
                 ],
               ),
@@ -77,7 +76,7 @@ class NewPostScreen extends StatelessWidget {
                   decoration: const InputDecoration(
                     hintText: 'what\'s on your mind...',
                     hintStyle:
-                        TextStyle(fontWeight: FontWeight.w200, fontSize: 14.0),
+                        TextStyle(fontWeight: FontWeight.w200, fontSize: 14.0, color: defaultColor1),
                     border: InputBorder.none,
                   ),
                 ),

@@ -36,20 +36,23 @@ class ProfileScreen extends StatelessWidget {
                             child: Container(
                               height: 160.0,
                               width: double.infinity,
-                              decoration: BoxDecoration(
-                                borderRadius: const BorderRadius.only(
+                              clipBehavior: Clip.antiAlias,
+                              child: FadeInImage(
+                                placeholder:
+                                   const AssetImage('assets/images/tinder_3.png'),
+                                image: NetworkImage(
+                                  cubit.user.cover,
+                                ),
+                                fit: BoxFit.cover,
+                              ),
+                              decoration: const BoxDecoration(
+                                borderRadius: BorderRadius.only(
                                   bottomRight: Radius.circular(
                                     15.0,
                                   ),
                                   bottomLeft: Radius.circular(
                                     15.0,
                                   ),
-                                ),
-                                image: DecorationImage(
-                                  image: NetworkImage(
-                                    cubit.user.cover,
-                                  ),
-                                  fit: BoxFit.cover,
                                 ),
                               ),
                             ),
@@ -93,7 +96,7 @@ class ProfileScreen extends StatelessWidget {
                               children: [
                                 Text(
                                   cubit.userPosts.length.toString(),
-                                  style: Theme.of(context).textTheme.subtitle2,
+                                  style: Theme.of(context).textTheme.subtitle1,
                                 ),
                                 Text(
                                   'Posts',
@@ -110,7 +113,7 @@ class ProfileScreen extends StatelessWidget {
                               children: [
                                 Text(
                                   cubit.user.followers.toString(),
-                                  style: Theme.of(context).textTheme.subtitle2,
+                                  style: Theme.of(context).textTheme.subtitle1,
                                 ),
                                 Text(
                                   'Followers',
@@ -127,7 +130,7 @@ class ProfileScreen extends StatelessWidget {
                               children: [
                                 Text(
                                   cubit.followers.length.toString(),
-                                  style: Theme.of(context).textTheme.subtitle2,
+                                  style: Theme.of(context).textTheme.subtitle1,
                                 ),
                                 Text(
                                   'Following',
@@ -199,7 +202,7 @@ class ProfileScreen extends StatelessWidget {
                         itemBuilder: (context, index) => buildPostItem(
                             cubit.userPosts[index], context, index),
                         separatorBuilder: (context, index) =>
-                            const SizedBox(height: 8.0),
+                            const Divider(thickness: 8.0),
                         itemCount: cubit.userPosts.length,
                       );
                     },

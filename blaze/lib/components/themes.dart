@@ -27,8 +27,14 @@ ThemeData lightTheme() => ThemeData(
       hintStyle: const TextStyle(color: Colors.black),
       
     ),
-    textTheme: GoogleFonts.quicksandTextTheme().copyWith(
-      bodyText1: const TextStyle(color: Colors.black, fontWeight: FontWeight.w400, fontSize: 18),
+    textTheme: GoogleFonts.lailaTextTheme().copyWith(
+      caption: const TextStyle(
+          fontSize: 12.0,
+          fontWeight: FontWeight.w100,
+          color: Colors.black,
+          height: 1.3,
+        ),
+      bodyText1: const TextStyle(color: Colors.black, fontWeight: FontWeight.w400, fontSize: 16),
       subtitle1: const TextStyle(
       fontSize: 14.0,
       fontWeight: FontWeight.w400,
@@ -63,9 +69,15 @@ ThemeData darkTheme() => ThemeData(
         contentPadding: const EdgeInsetsDirectional.only(top: 5, start: 30),
         hintStyle: const TextStyle(color: Colors.white),
       ),
-      textTheme: GoogleFonts.quicksandTextTheme().copyWith(
-        bodyText1: const TextStyle(
-            color: Colors.white, fontWeight: FontWeight.w400, fontSize: 18),
+      textTheme: GoogleFonts.lailaTextTheme().copyWith(
+        caption: const TextStyle(
+          fontSize: 12.0,
+          fontWeight: FontWeight.w100,
+          color: Colors.white,
+          height: 1.3,
+        ),
+        bodyText1:  GoogleFonts.laila().copyWith(
+            color: Colors.white, fontWeight: FontWeight.w400, fontSize: 16),
         subtitle1: const TextStyle(
           fontSize: 14.0,
           fontWeight: FontWeight.w600,

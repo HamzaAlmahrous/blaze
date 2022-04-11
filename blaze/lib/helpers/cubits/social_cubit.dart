@@ -19,16 +19,14 @@ import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import 'package:http/http.dart' as http;
-import 'package:path/path.dart';
-import 'package:path_provider/path_provider.dart';
-
 class SocialCubit extends Cubit<SocialStates> {
   SocialCubit() : super(InitialState());
 
   static SocialCubit get(context) => BlocProvider.of(context);
 
   SocialUser user = SocialUser.empty();
+
+  bool isDark = false;
 
   void getUserData() {
     emit(SocialLoadingUserState());
@@ -679,7 +677,6 @@ class SocialCubit extends Cubit<SocialStates> {
     // file.writeAsBytesSync(response.bodyBytes);
   }
 
-  
   void logOut(context) {
     emit(SignOutLoadingState());
     FirebaseAuth.instance.signOut().then((value) async {
@@ -696,5 +693,14 @@ class SocialCubit extends Cubit<SocialStates> {
     }).catchError((error) {
       emit(SignOutErrorState(error));
     });
+  }
+
+  void changeAppMode({bool? fromShared}) {
+    isDark = !isDark;
+
+    CacheHelper.saveData(key: 'isDark', value: isDark).then((value) {
+      emit(SocialAppChangeModeState());
+    });
+    print(isDark);
   }
 }

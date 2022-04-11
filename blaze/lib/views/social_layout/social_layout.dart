@@ -5,6 +5,7 @@ import 'package:blaze/helpers/cubits/social_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SocialLayout extends StatefulWidget {
   SocialLayout({Key? key}) : super(key: key);
@@ -43,7 +44,7 @@ class _SocialLayoutState extends State<SocialLayout>
         return Scaffold(
           appBar: AppBar(
             title: Text(cubit.titles[tabController.index],
-                style: const TextStyle(fontSize: 20.0)),
+                style: GoogleFonts.laila().copyWith(fontSize: 20.0)),
             bottom: TabBar(
               controller: tabController,
               labelColor: defaultColor1,

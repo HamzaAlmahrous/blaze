@@ -1,3 +1,4 @@
+import 'package:blaze/components/const.dart';
 import 'package:blaze/components/toast.dart';
 import 'package:blaze/helpers/cubits/social_cubit.dart';
 import 'package:blaze/helpers/cubits/social_state.dart';
@@ -63,7 +64,9 @@ class HomeScreen extends StatelessWidget {
                         child: Stack(
                           alignment: Alignment.bottomLeft,
                           children: const [
-                            Image(
+                            FadeInImage(
+                              placeholder:
+                                  AssetImage('assets/images/tinder_3.png'),
                               image: NetworkImage(
                                   'https://img.freepik.com/free-photo/students-giving-five_23-2147663448.jpg?w=900'),
                               fit: BoxFit.cover,
@@ -103,6 +106,7 @@ class HomeScreen extends StatelessWidget {
                         child: SizedBox(
                           height: 60.0,
                           child: Card(
+                            color: cubit.isDark ? Colors.grey : Colors.white,
                             elevation: 5.0,
                             child: InkWell(
                               child: Row(
@@ -126,7 +130,9 @@ class HomeScreen extends StatelessWidget {
                                     padding: const EdgeInsets.all(10.0),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(30.0),
-                                      color: Colors.white,
+                                      color: cubit.isDark
+                                          ? Colors.grey
+                                          : Colors.white,
                                     ),
                                     child: Text(
                                       'What\'s on your mind?',
@@ -158,7 +164,7 @@ class HomeScreen extends StatelessWidget {
                             itemBuilder: (context, index) => buildPostItem(
                                 cubit.posts[index], context, index),
                             separatorBuilder: (context, index) =>
-                                Container(color: Colors.grey[400], height: 2.0),
+                                const Divider(thickness: 8.0),
                             itemCount: cubit.posts.length,
                           );
                         },

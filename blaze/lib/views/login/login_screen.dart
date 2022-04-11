@@ -54,18 +54,14 @@ class SocialLogin extends StatelessWidget {
                             fit: BoxFit.cover,
                           ),
                         ),
-                        const Text(
+                        Text(
                           "blaze",
-                          style: TextStyle(
-                              fontSize: 40.0, fontWeight: FontWeight.bold),
+                          style: Theme.of(context).textTheme.bodyText1!.copyWith(fontSize: 40.0),
                         ),
                         const SizedBox(height: 20.0),
-                        const Text(
+                        Text(
                           "keep in touch with your friends",
-                          style: TextStyle(
-                            fontSize: 15.0,
-                            fontWeight: FontWeight.w400,
-                          ),
+                          style:  Theme.of(context).textTheme.bodyText1,
                         ),
                         const SizedBox(
                           height: 30.0,

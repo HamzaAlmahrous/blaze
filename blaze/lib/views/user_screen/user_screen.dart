@@ -94,7 +94,7 @@ class UserScreen extends StatelessWidget {
                             children: [
                               Text(
                                 cubit.userPosts.length.toString(),
-                                style: Theme.of(context).textTheme.subtitle2,
+                                style: Theme.of(context).textTheme.subtitle1,
                               ),
                               Text(
                                 'Posts',
@@ -108,7 +108,7 @@ class UserScreen extends StatelessWidget {
                             children: [
                               Text(
                                 user.followers.toString(),
-                                style: Theme.of(context).textTheme.subtitle2,
+                                style: Theme.of(context).textTheme.subtitle1,
                               ),
                               Text(
                                 'Followers',
@@ -122,7 +122,7 @@ class UserScreen extends StatelessWidget {
                             children: [
                               Text(
                                 cubit.followers.length.toString(),
-                                style: Theme.of(context).textTheme.subtitle2,
+                                style: Theme.of(context).textTheme.subtitle1,
                               ),
                               Text(
                                 'Following',
@@ -165,7 +165,7 @@ class UserScreen extends StatelessWidget {
                         itemBuilder: (context, index) => buildPostItem(
                             cubit.userPosts[index], context, index),
                         separatorBuilder: (context, index) =>
-                            const SizedBox(height: 8.0),
+                           const Divider(thickness: 8.0),
                         itemCount: cubit.userPosts.length,
                       );
                     },

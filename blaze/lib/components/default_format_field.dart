@@ -1,3 +1,4 @@
+import 'package:blaze/helpers/cubits/social_cubit.dart';
 import 'package:flutter/material.dart';
 
 Widget defaultFormField({
@@ -37,9 +38,10 @@ Widget defaultFormField({
         ),
         prefixIcon: Icon(
           prefix,
+          color: SocialCubit.get(context).isDark ? Colors.white : Colors.black,
         ),
         suffixIcon: suffix != null
-            ? IconButton(onPressed: suffixPressed, icon: Icon(suffix))
+            ? IconButton(onPressed: suffixPressed, icon: Icon(suffix, color: SocialCubit.get(context).isDark ? Colors.white : Colors.black,))
             : null,
       ),
     );
