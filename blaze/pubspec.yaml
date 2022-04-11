@@ -42,6 +42,7 @@ dev_dependencies:
   image_picker: ^0.8.4+11
   iconsax: ^0.0.8
   http: ^0.13.4
+  smooth_page_indicator: ^1.0.0+2
 
   #firebase
   firebase_core: ^1.13.1

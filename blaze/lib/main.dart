@@ -44,12 +44,13 @@ void main(List<String> args) async {
   
   await CacheHelper.init();
 
-  //bool? onBoarding;
-  //onBoarding = CacheHelper.getData(key: 'onBoarding');
+  bool? onBoarding;
+  onBoarding = CacheHelper.getData(key: 'onBoarding');
+
   uId = CacheHelper.getData(key: 'uId');
   lang = CacheHelper.getData(key: 'lang');
   if (CacheHelper.getData(key: 'isDark') == null){
-    CacheHelper.saveData(key: 'isDark', value: false);
+    CacheHelper.saveData(key: 'isDark', value: true);
   }
   
   bool isDark = CacheHelper.getData(key: 'isDark');
@@ -58,7 +59,7 @@ void main(List<String> args) async {
   lang ??= 'en';
   //print(uId);
 
-  Widget startWidget = Wrapper.start(uId: uId);
+  Widget startWidget = Wrapper.start(uId: uId, onBarding: onBoarding);
 
   BlocOverrides.runZoned(
     () {
