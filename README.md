@@ -13,3 +13,5 @@ I used:
 
 [images made by figma](https://www.figma.com)
 hope you like it.
+
+![cove](https://github.com/HamzaAlmahrous/blaze/blob/master/figma_images/small.png)
