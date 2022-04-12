@@ -61,17 +61,14 @@ class RegisterScreen extends StatelessWidget {
                           SizedBox(
                             height: MediaQuery.of(context).size.height / 5,
                             child: const Image(
-                              image: AssetImage('assets/images/tinder_1.png'),
+                              image: AssetImage('assets/images/2.png'),
                               fit: BoxFit.cover,
                             ),
                           ),
                           const SizedBox(height: 20),
                           Text(
                             LocaleKeys.join_now.tr(),
-                            style:const TextStyle(
-                              fontSize: 15.0,
-                              fontWeight: FontWeight.w400,
-                            ),
+                            style: Theme.of(context).textTheme.bodyText1,
                           ),
                           const SizedBox(
                             height: 30.0,

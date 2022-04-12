@@ -90,7 +90,7 @@ import 'package:easy_localization/easy_localization.dart';
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
                     child: FadeInImage(
-                              placeholder: const AssetImage('assets/images/tinder_3.png'),
+                              placeholder: const AssetImage('assets/images/3.png'),
                       image: NetworkImage(post.postImage!),
                     ),
                   ),

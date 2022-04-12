@@ -55,7 +55,7 @@ class SocialLogin extends StatelessWidget {
                         SizedBox(
                           height: MediaQuery.of(context).size.height / 5,
                           child: const Image(
-                            image: AssetImage('assets/images/tinder.png'),
+                            image: AssetImage('assets/images/2.png'),
                             fit: BoxFit.cover,
                           ),
                         ),

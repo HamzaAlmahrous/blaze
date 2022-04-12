@@ -68,7 +68,7 @@ class HomeScreen extends StatelessWidget {
                           children: [
                             const FadeInImage(
                               placeholder:
-                                  AssetImage('assets/images/tinder_3.png'),
+                                  AssetImage('assets/images/3.png'),
                               image: NetworkImage(
                                   'https://img.freepik.com/free-photo/students-giving-five_23-2147663448.jpg?w=900'),
                               fit: BoxFit.cover,

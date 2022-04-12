@@ -22,8 +22,7 @@ class _SocialLayoutState extends State<SocialLayout>
     super.initState();
     tabController = TabController(vsync: this, length: 4);
     tabController.addListener(() {
-      setState(() {
-      });
+      setState(() {});
     });
   }
 
@@ -36,15 +35,20 @@ class _SocialLayoutState extends State<SocialLayout>
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<SocialCubit, SocialStates>(
-      listener: ((context, state) {
-      }),
+      listener: ((context, state) {}),
       builder: (context, state) {
         var cubit = SocialCubit.get(context);
 
         return Scaffold(
           appBar: AppBar(
-            title: Text(cubit.titles[tabController.index],
-                style: GoogleFonts.laila().copyWith(fontSize: 20.0)),
+            title: Row(
+              children: [
+                const SizedBox(child: Image(image: AssetImage('assets/images/2.png'), fit: BoxFit.cover), width: 35.0, height: 35.0),
+                const SizedBox(width: 5.0),
+                Text(cubit.titles[tabController.index],
+                    style: GoogleFonts.laila().copyWith(fontSize: 20.0)),
+              ],
+            ),
             bottom: TabBar(
               controller: tabController,
               labelColor: defaultColor1,
@@ -61,9 +65,11 @@ class _SocialLayoutState extends State<SocialLayout>
               },
             ),
             actions: [
-              IconButton(onPressed: () {
-                Navigator.pushNamed(context, '/search');
-              }, icon: const Icon(IconBroken.Search)),
+              IconButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/search');
+                  },
+                  icon: const Icon(IconBroken.Search)),
               IconButton(
                   onPressed: () {},
                   icon: const Icon(IconBroken.Notification, size: 30.0)),

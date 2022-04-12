@@ -3,11 +3,15 @@ import 'package:blaze/components/styles/icon_broken.dart';
 import 'package:blaze/helpers/cubits/social_cubit.dart';
 import 'package:blaze/helpers/cubits/social_state.dart';
 import 'package:blaze/translations/locale_keys.g.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:easy_localization/easy_localization.dart';
+
+import '../../components/const.dart';
+import '../../components/default_button.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -41,7 +45,7 @@ class ProfileScreen extends StatelessWidget {
                               clipBehavior: Clip.antiAlias,
                               child: FadeInImage(
                                 placeholder:
-                                   const AssetImage('assets/images/tinder_3.png'),
+                                    const AssetImage('assets/images/3.png'),
                                 image: NetworkImage(
                                   cubit.user.cover,
                                 ),
@@ -180,7 +184,116 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       OutlinedButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, '/settings');
+                          //Navigator.pushNamed(context, '/settings');
+                          showModalBottomSheet(
+                              backgroundColor: cubit.isDark
+                                  ? const Color(0xFF202A44)
+                                  : defaultColor4,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              clipBehavior: Clip.antiAlias,
+                              elevation: 5.0,
+                              context: context,
+                              builder: (context) {
+                                return Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      const Divider(
+                                        color: Colors.black,
+                                        thickness: 5.0,
+                                        indent: 150.0,
+                                        endIndent: 150.0,
+                                      ),
+                                      const SizedBox(height: 10.0),
+                                      defaultButton(
+                                        function: () {
+                                          cubit.logOut(context);
+                                        },
+                                        text: LocaleKeys.log_out.tr(),
+                                      ),
+                                      const SizedBox(height: 10.0),
+                                      defaultButton(
+                                          function: () {
+                                            cubit.changeAppMode(
+                                                fromShared: !cubit.isDark);
+                                          },
+                                          text: cubit.isDark
+                                              ? LocaleKeys.light_mode.tr()
+                                              : LocaleKeys.dark_mode.tr()),
+                                      const SizedBox(height: 20.0),
+                                      Text(
+                                        LocaleKeys.change_lang.tr(),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText1
+                                      ),
+                                      const SizedBox(height: 20.0),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          ElevatedButton(
+                                            style: ButtonStyle(
+                                                shape:
+                                                    MaterialStateProperty.all<
+                                                        RoundedRectangleBorder>(
+                                                  RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            20.0),
+                                                  ),
+                                                ),
+                                                fixedSize:
+                                                    MaterialStateProperty.all(
+                                                        const Size(100, 50))),
+                                            onPressed: () async {
+                                              cubit.changeLanguage('ar');
+                                              cubit.isSelected[0] = true;
+                                              cubit.isSelected[1] = false;
+                                              await context.setLocale(
+                                                  const Locale('ar'));
+                                            },
+                                            child: const Text('العربية',
+                                                style: TextStyle(
+                                                    color: Colors.white)),
+                                          ),
+                                          const SizedBox(width: 20.0),
+                                          ElevatedButton(
+                                            style: ButtonStyle(
+                                                fixedSize:
+                                                    MaterialStateProperty.all(
+                                                        const Size(100, 50)),
+                                                shape:
+                                                    MaterialStateProperty.all<
+                                                        RoundedRectangleBorder>(
+                                                  RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            20.0),
+                                                  ),
+                                                )),
+                                            onPressed: () async {
+                                              cubit.changeLanguage('en');
+                                              cubit.isSelected[1] = true;
+                                              cubit.isSelected[0] = false;
+                                              await context.setLocale(
+                                                  const Locale('en'));
+                                            },
+                                            child: const Text('English',
+                                                style: TextStyle(
+                                                    color: Colors.white)),
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(height: 10.0),
+                                    ],
+                                  ),
+                                );
+                              });
                         },
                         child: const Icon(
                           Iconsax.setting,
