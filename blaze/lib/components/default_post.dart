@@ -2,11 +2,13 @@ import 'package:blaze/components/const.dart';
 import 'package:blaze/components/styles/icon_broken.dart';
 import 'package:blaze/helpers/cubits/social_cubit.dart';
 import 'package:blaze/models/post.dart';
+import 'package:blaze/translations/locale_keys.g.dart';
 import 'package:blaze/views/comment_screen/comment_screen.dart';
 import 'package:blaze/views/full_image/full_image_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:easy_localization/easy_localization.dart';
 
  Widget buildPostItem(SocialPost post, context, index) {
     TextEditingController commentController = TextEditingController();
@@ -66,7 +68,7 @@ import 'package:iconsax/iconsax.dart';
                               onPressed: () {
                                 SocialCubit.get(context).deletePost(post);
                               },
-                              child: const Text('delete post'))),
+                              child: Text(LocaleKeys.delelte_post.tr()))),
                     ];
                   },
                 )
@@ -127,8 +129,7 @@ import 'package:iconsax/iconsax.dart';
                             const Icon(Icons.comment_outlined,
                                 size: 16.0, color: defaultColor2),
                             const SizedBox(width: 5.0),
-                            Text(
-                              'comments',
+                            Text(LocaleKeys.comments.tr(),
                               style: Theme.of(context).textTheme.caption,
                             )
                           ],
@@ -211,7 +212,7 @@ import 'package:iconsax/iconsax.dart';
                     controller: commentController,
                     style: Theme.of(context).textTheme.caption,
                     decoration: InputDecoration(
-                      hintText: 'write a comment!',
+                      hintText: LocaleKeys.write_comment.tr(),
                       hintStyle: Theme.of(context).textTheme.caption,
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(25.0),
@@ -247,7 +248,7 @@ import 'package:iconsax/iconsax.dart';
                           size: 16.0, color: defaultColor1),
                       const SizedBox(width: 5.0),
                       Text(
-                        'Like',
+                        LocaleKeys.like.tr(),
                         style: Theme.of(context).textTheme.caption,
                       )
                     ],

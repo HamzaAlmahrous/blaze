@@ -4,6 +4,7 @@ import 'package:blaze/helpers/local/chache_helper.dart';
 import 'package:blaze/models/comments.dart';
 import 'package:blaze/models/message.dart';
 import 'package:blaze/models/post.dart';
+import 'package:blaze/translations/locale_keys.g.dart';
 import 'package:blaze/views/chats/chats_screen.dart';
 import 'package:blaze/views/profile/profile_screen.dart';
 import 'package:blaze/views/users/users_screen.dart';
@@ -18,6 +19,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class SocialCubit extends Cubit<SocialStates> {
   SocialCubit() : super(InitialState());
@@ -51,7 +53,7 @@ class SocialCubit extends Cubit<SocialStates> {
     const ProfileScreen(),
   ];
 
-  List<String> titles = ['Home', 'Chats', 'Users', 'Settings'];
+  List<String> titles = [LocaleKeys.home.tr(), LocaleKeys.chats.tr(), LocaleKeys.users.tr(), LocaleKeys.settings.tr()];
 
   void changeNav(int index) {
     currentIndex = index;
@@ -702,5 +704,13 @@ class SocialCubit extends Cubit<SocialStates> {
       emit(SocialAppChangeModeState());
     });
     print(isDark);
+  }
+
+  List<bool> isSelected = [lang == 'ar' ? true : false ,lang == 'en' ? true : false ];
+  
+  void changeLanguage(String lang1){
+    lang = lang1;
+    CacheHelper.saveData(key: 'lang', value: lang1 );
+    emit(ChangeLanguageState());
   }
 }

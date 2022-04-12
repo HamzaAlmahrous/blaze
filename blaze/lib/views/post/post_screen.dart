@@ -3,9 +3,11 @@ import 'package:blaze/components/default_app_bar.dart';
 import 'package:blaze/components/styles/icon_broken.dart';
 import 'package:blaze/helpers/cubits/social_cubit.dart';
 import 'package:blaze/helpers/cubits/social_state.dart';
+import 'package:blaze/translations/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../components/default_text_button.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class NewPostScreen extends StatelessWidget {
   const NewPostScreen({Key? key}) : super(key: key);
@@ -26,7 +28,7 @@ class NewPostScreen extends StatelessWidget {
                   cubit.postImage = null;
                   Navigator.pop(context);
                 },
-                title: 'Create Post',
+                title: LocaleKeys.create_post.tr(),
                 actions: [
                   defaultTextButton(
                       function: () {
@@ -43,7 +45,7 @@ class NewPostScreen extends StatelessWidget {
                         }
                         Navigator.pop(context);
                       },
-                      text: 'Post'),
+                      text: LocaleKeys.post.tr()),
                   const SizedBox(width: 8.0),
                 ]),
             body: Column(children: [
@@ -74,7 +76,7 @@ class NewPostScreen extends StatelessWidget {
                   controller: postController,
                   maxLines: 50,
                   decoration: const InputDecoration(
-                    hintText: 'what\'s on your mind...',
+                    hintText: "what's in your mind?",
                     hintStyle:
                         TextStyle(fontWeight: FontWeight.w200, fontSize: 14.0, color: defaultColor1),
                     border: InputBorder.none,
@@ -122,10 +124,10 @@ class NewPostScreen extends StatelessWidget {
                       cubit.getPostImage();
                     },
                     child: Row(
-                      children: const [
-                        Icon(IconBroken.Image_2, size: 30.0),
-                        SizedBox(width: 5.0),
-                        Text('add image', style: TextStyle(fontSize: 16.0)),
+                      children: [
+                        const Icon(IconBroken.Image_2, size: 30.0),
+                        const SizedBox(width: 5.0),
+                        Text(LocaleKeys.add_photo.tr(), style: const TextStyle(fontSize: 16.0)),
                       ],
                     ),
                   ),

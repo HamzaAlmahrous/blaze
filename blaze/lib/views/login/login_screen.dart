@@ -1,5 +1,6 @@
 import 'package:blaze/helpers/cubits/social_cubit.dart';
 import 'package:blaze/helpers/local/chache_helper.dart';
+import 'package:blaze/translations/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../components/const.dart';
@@ -9,6 +10,7 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import '../../components/toast.dart';
 import 'cubit/login_cubit.dart';
 import 'cubit/login_state.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class SocialLogin extends StatelessWidget {
   SocialLogin({Key? key}) : super(key: key);
@@ -24,14 +26,17 @@ class SocialLogin extends StatelessWidget {
       child: BlocConsumer<SocialLoginCubit, SocialLoginStates>(
         listener: (context, state) {
           if (state is SocialLoginErrorState) {
-            
-            String msg = state.error.substring(state.error.lastIndexOf(']')+1);
+            String msg =
+                state.error.substring(state.error.lastIndexOf(']') + 1);
             showToast(text: msg, state: ToastState.ERROR);
           }
           if (state is SocialLoginSuccessState) {
             CacheHelper.saveData(key: 'uId', value: state.uId).then((value) {
               uId = CacheHelper.getData(key: 'uId');
-              SocialCubit.get(context)..getUserData()..getPosts()..getFollowers();
+              SocialCubit.get(context)
+                ..getUserData()
+                ..getPosts()
+                ..getFollowers();
               Navigator.pushNamedAndRemoveUntil(
                   context, '/home', (route) => false);
             });
@@ -56,12 +61,15 @@ class SocialLogin extends StatelessWidget {
                         ),
                         Text(
                           "blaze",
-                          style: Theme.of(context).textTheme.bodyText1!.copyWith(fontSize: 40.0),
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyText1!
+                              .copyWith(fontSize: 40.0),
                         ),
                         const SizedBox(height: 20.0),
                         Text(
-                          "keep in touch with your friends",
-                          style:  Theme.of(context).textTheme.bodyText1,
+                          LocaleKeys.keep_in.tr(),
+                          style: Theme.of(context).textTheme.bodyText1,
                         ),
                         const SizedBox(
                           height: 30.0,
@@ -70,11 +78,12 @@ class SocialLogin extends StatelessWidget {
                           context: context,
                           controller: emailController,
                           keyboardType: TextInputType.emailAddress,
-                          label: "email",
+                          label: LocaleKeys.email.tr(),
                           prefix: Icons.email_outlined,
                           validate: (value) {
                             if (value!.isEmpty) {
-                              return 'please enter your email';
+                              String msg = LocaleKeys.please.tr() + LocaleKeys.email.tr();
+                              return msg;
                             }
                             return null;
                           },
@@ -86,7 +95,7 @@ class SocialLogin extends StatelessWidget {
                             context: context,
                             controller: passwordController,
                             keyboardType: TextInputType.visiblePassword,
-                            label: "password",
+                            label: LocaleKeys.password.tr(),
                             prefix: Icons.lock_outline,
                             suffix: SocialLoginCubit.get(context).suffix,
                             isPassword:
@@ -119,7 +128,7 @@ class SocialLogin extends StatelessWidget {
                                 defaultColor1,
                                 Colors.orange,
                               ]),
-                              text: "login",
+                              text: LocaleKeys.log_in.tr(),
                               isUpperCase: true,
                               function: () {
                                 if (loginFormKey.currentState!.validate()) {
@@ -144,7 +153,7 @@ class SocialLogin extends StatelessWidget {
                               defaultColor1,
                               Colors.orange,
                             ]),
-                            text: "register",
+                            text: LocaleKeys.register.tr(),
                             isUpperCase: true,
                             function: () {
                               Navigator.pushNamed(context, '/register');

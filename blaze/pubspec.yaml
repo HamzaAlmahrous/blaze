@@ -43,6 +43,7 @@ dev_dependencies:
   iconsax: ^0.0.8
   http: ^0.13.4
   smooth_page_indicator: ^1.0.0+2
+  easy_localization: ^3.0.0
 
   #firebase
   firebase_core: ^1.13.1
@@ -59,6 +60,7 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/translations/
 
   fonts:
     - family: IconBroken

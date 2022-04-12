@@ -16,6 +16,8 @@ import 'helpers/bloc_observer.dart';
 import 'helpers/local/chache_helper.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:easy_localization/easy_localization.dart';
+import './translations/codegen_loader.g.dart';
 
 Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async{
   print(message.data.toString());
@@ -23,11 +25,13 @@ Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async{
 
 void main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
-  WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
   await Firebase.initializeApp();
   
   var token = await FirebaseMessaging.instance.getToken();
   print(token);
+
+  //FCM:
 
   //foreground fcm
   FirebaseMessaging.onMessage.listen((event) {
@@ -44,27 +48,29 @@ void main(List<String> args) async {
   
   await CacheHelper.init();
 
-  bool? onBoarding;
-  onBoarding = CacheHelper.getData(key: 'onBoarding');
-
+  bool? onBoarding = CacheHelper.getData(key: 'onBoarding');
   uId = CacheHelper.getData(key: 'uId');
   lang = CacheHelper.getData(key: 'lang');
+  print(lang);
   if (CacheHelper.getData(key: 'isDark') == null){
     CacheHelper.saveData(key: 'isDark', value: true);
   }
   
   bool isDark = CacheHelper.getData(key: 'isDark');
-  print(isDark);
 
   lang ??= 'en';
-  //print(uId);
 
   Widget startWidget = Wrapper.start(uId: uId, onBarding: onBoarding);
 
   BlocOverrides.runZoned(
     () {
       runApp(
-        MyApp(startWidget: startWidget, isDark: isDark),
+        EasyLocalization(
+          assetLoader: const CodegenLoader(),
+          supportedLocales: const [Locale('en'), Locale('ar')],
+          path: 'assets/translations',
+          fallbackLocale: const Locale('en'),
+          child: MyApp(startWidget: startWidget, isDark: isDark)),
       );
     },
     blocObserver: MyBlocObserver(),
@@ -88,6 +94,9 @@ class MyApp extends StatelessWidget {
           listener: (context, state) {},
           builder: (context, state) {
             return MaterialApp(
+              supportedLocales: context.supportedLocales,
+              localizationsDelegates: context.localizationDelegates,
+              locale: context.locale,
               debugShowCheckedModeBanner: false,
               theme: lightTheme(),
               darkTheme: darkTheme(),

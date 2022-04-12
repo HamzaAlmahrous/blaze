@@ -2,12 +2,14 @@ import 'package:blaze/components/const.dart';
 import 'package:blaze/helpers/cubits/social_cubit.dart';
 import 'package:blaze/helpers/cubits/social_state.dart';
 import 'package:blaze/models/message.dart';
+import 'package:blaze/translations/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import '../../components/styles/icon_broken.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import '../../models/user.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 final TextEditingController messageController = TextEditingController();
 
@@ -90,7 +92,7 @@ class ChatDetailsScreen extends StatelessWidget {
                         fallback: (context) => Expanded(
                           child: Center(
                             child: Text(
-                              'No messages!',
+                              LocaleKeys.no_message.tr(),
                               style: TextStyle(
                                 fontSize: 24,
                                 color: Colors.grey.shade600,
@@ -105,9 +107,9 @@ class ChatDetailsScreen extends StatelessWidget {
                             child: TextFormField(
                               controller: messageController,
                               style: const TextStyle(color: Colors.white),
-                              decoration: const InputDecoration(
-                                hintText: 'type your message here..',
-                                hintStyle: TextStyle(color: Colors.white),
+                              decoration: InputDecoration(
+                                hintText: LocaleKeys.type_message.tr(),
+                                hintStyle: const TextStyle(color: Colors.white),
                                 fillColor: defaultColor2,
                                 filled: true,
                                 labelStyle: TextStyle(color: Colors.white),

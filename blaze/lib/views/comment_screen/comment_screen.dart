@@ -2,12 +2,14 @@ import 'package:blaze/components/const.dart';
 import 'package:blaze/components/default_app_bar.dart';
 import 'package:blaze/helpers/cubits/social_cubit.dart';
 import 'package:blaze/helpers/cubits/social_state.dart';
+import 'package:blaze/translations/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import '../../components/styles/icon_broken.dart';
 import '../../models/comments.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class CommentScreen extends StatelessWidget {
   CommentScreen({Key? key, required this.postId}) : super(key: key);
@@ -28,7 +30,7 @@ class CommentScreen extends StatelessWidget {
                 cubit.comments.clear();
                 Navigator.pop(context);
               },
-              title: 'Comments'),
+              title: LocaleKeys.comments.tr()),
           body: state is SocialGetCommentsLoadingState
               ? const Center(child: CircularProgressIndicator())
               : Padding(
@@ -58,9 +60,9 @@ class CommentScreen extends StatelessWidget {
                             );
                           },
                           fallback: (context) {
-                            return const Expanded(
+                            return Expanded(
                               child: Center(
-                                  child: Text('There\'s no comments yet!')),
+                                  child: Text(LocaleKeys.no_comments.tr())),
                             );
                           },
                         ),
@@ -124,7 +126,7 @@ class CommentScreen extends StatelessWidget {
                                 decoration: InputDecoration(
                                   fillColor: Colors.white,
                                   filled: true,
-                                  hintText: 'write a comment!',
+                                  hintText: LocaleKeys.comment.tr(),
                                   hintStyle:
                                       Theme.of(context).textTheme.caption,
                                   focusedBorder: OutlineInputBorder(
@@ -225,7 +227,7 @@ Widget commentItem(SocialComment comment, context, String postId) {
                               SocialCubit.get(context)
                                   .deleteComment(comment, postId);
                             },
-                            child: const Text('delete comment'))),
+                            child: Text(LocaleKeys.delete_comment.tr()))),
                   ];
                 },
               )

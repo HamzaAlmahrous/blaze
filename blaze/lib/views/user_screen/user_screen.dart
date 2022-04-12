@@ -4,9 +4,11 @@ import 'package:blaze/components/default_post.dart';
 import 'package:blaze/helpers/cubits/social_cubit.dart';
 import 'package:blaze/helpers/cubits/social_state.dart';
 import 'package:blaze/models/user.dart';
+import 'package:blaze/translations/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class UserScreen extends StatelessWidget {
   UserScreen({required this.user, Key? key}) : super(key: key);
@@ -97,7 +99,7 @@ class UserScreen extends StatelessWidget {
                                 style: Theme.of(context).textTheme.subtitle1,
                               ),
                               Text(
-                                'Posts',
+                                LocaleKeys.posts.tr(),
                                 style: Theme.of(context).textTheme.caption,
                               ),
                             ],
@@ -111,7 +113,7 @@ class UserScreen extends StatelessWidget {
                                 style: Theme.of(context).textTheme.subtitle1,
                               ),
                               Text(
-                                'Followers',
+                                LocaleKeys.followers.tr(),
                                 style: Theme.of(context).textTheme.caption,
                               ),
                             ],
@@ -125,7 +127,7 @@ class UserScreen extends StatelessWidget {
                                 style: Theme.of(context).textTheme.subtitle1,
                               ),
                               Text(
-                                'Following',
+                                LocaleKeys.following.tr(),
                                 style: Theme.of(context).textTheme.caption,
                               ),
                             ],
@@ -141,14 +143,14 @@ class UserScreen extends StatelessWidget {
                               -1
                           ? Expanded(
                               child: defaultButton(
-                                  text: 'unfollow',
+                                  text: LocaleKeys.unfollow.tr(),
                                   function: () {
                                     cubit.unfollow(user.uId);
                                   }),
                             )
                           : Expanded(
                               child: defaultButton(
-                                  text: 'follow',
+                                  text: LocaleKeys.follow.tr(),
                                   function: () {
                                     cubit.follow(user.uId);
                                   }),

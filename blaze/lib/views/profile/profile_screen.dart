@@ -2,10 +2,12 @@ import 'package:blaze/components/default_post.dart';
 import 'package:blaze/components/styles/icon_broken.dart';
 import 'package:blaze/helpers/cubits/social_cubit.dart';
 import 'package:blaze/helpers/cubits/social_state.dart';
+import 'package:blaze/translations/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -99,7 +101,7 @@ class ProfileScreen extends StatelessWidget {
                                   style: Theme.of(context).textTheme.subtitle1,
                                 ),
                                 Text(
-                                  'Posts',
+                                  LocaleKeys.posts.tr(),
                                   style: Theme.of(context).textTheme.caption,
                                 ),
                               ],
@@ -116,7 +118,7 @@ class ProfileScreen extends StatelessWidget {
                                   style: Theme.of(context).textTheme.subtitle1,
                                 ),
                                 Text(
-                                  'Followers',
+                                  LocaleKeys.followers.tr(),
                                   style: Theme.of(context).textTheme.caption,
                                 ),
                               ],
@@ -133,7 +135,7 @@ class ProfileScreen extends StatelessWidget {
                                   style: Theme.of(context).textTheme.subtitle1,
                                 ),
                                 Text(
-                                  'Following',
+                                  LocaleKeys.following.tr(),
                                   style: Theme.of(context).textTheme.caption,
                                 ),
                               ],
@@ -154,8 +156,8 @@ class ProfileScreen extends StatelessWidget {
                           onPressed: () {
                             Navigator.pushNamed(context, '/new_post');
                           },
-                          child: const Text(
-                            'Add posts',
+                          child: Text(
+                            LocaleKeys.create_post.tr(),
                           ),
                         ),
                       ),

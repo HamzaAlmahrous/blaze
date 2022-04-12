@@ -195,4 +195,8 @@ class SignOutErrorState extends SocialStates {
 
 class SocialAppChangeModeState extends SocialStates {}
 
+//lang
+
+class ChangeLanguageState extends SocialStates {}
+
 

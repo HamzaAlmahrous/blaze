@@ -3,11 +3,13 @@ import 'package:blaze/components/toast.dart';
 import 'package:blaze/helpers/cubits/social_cubit.dart';
 import 'package:blaze/helpers/cubits/social_state.dart';
 import 'package:blaze/models/user.dart';
+import 'package:blaze/translations/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import '../../components/default_post.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -17,7 +19,7 @@ class HomeScreen extends StatelessWidget {
     return BlocConsumer<SocialCubit, SocialStates>(listener: (context, state) {
       if (state is SocialCommentPostsSuccessState) {
         showToast(
-            text: 'comment added successfully', state: ToastState.SUCCESS);
+            text: LocaleKeys.comment_successfully.tr(), state: ToastState.SUCCESS);
       }
       if (state is SocialCommentPostsErrorState) {
         showToast(text: state.error, state: ToastState.ERROR);
@@ -63,8 +65,8 @@ class HomeScreen extends StatelessWidget {
                         margin: const EdgeInsets.all(8.0),
                         child: Stack(
                           alignment: Alignment.bottomLeft,
-                          children: const [
-                            FadeInImage(
+                          children: [
+                            const FadeInImage(
                               placeholder:
                                   AssetImage('assets/images/tinder_3.png'),
                               image: NetworkImage(
@@ -74,10 +76,9 @@ class HomeScreen extends StatelessWidget {
                               width: double.infinity,
                             ),
                             Padding(
-                              padding: EdgeInsets.all(10.0),
-                              child: Text(
-                                'keep in touch with friends',
-                                style: TextStyle(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Text(LocaleKeys.keep_in.tr(),
+                                style: const TextStyle(
                                     fontSize: 11.5,
                                     color: Colors.white,
                                     shadows: [
@@ -134,8 +135,7 @@ class HomeScreen extends StatelessWidget {
                                           ? Colors.grey
                                           : Colors.white,
                                     ),
-                                    child: Text(
-                                      'What\'s on your mind?',
+                                    child: Text("what's in your mind?",
                                       style:
                                           Theme.of(context).textTheme.subtitle1,
                                     ),

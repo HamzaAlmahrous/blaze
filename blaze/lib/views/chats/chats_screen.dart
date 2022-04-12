@@ -1,10 +1,12 @@
 import 'package:blaze/helpers/cubits/social_cubit.dart';
 import 'package:blaze/helpers/cubits/social_state.dart';
+import 'package:blaze/translations/locale_keys.g.dart';
 import 'package:blaze/views/chat_details/chat_details.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import '../../components/styles/icon_broken.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ChatsScreen extends StatelessWidget {
   const ChatsScreen({Key? key}) : super(key: key);
@@ -40,8 +42,8 @@ class ChatsScreen extends StatelessWidget {
                         );
                       },
                       fallback: (context) {
-                        return const Center(
-                            child: Text('you don\'t follow anyone yet!'));
+                        return  Center(
+                            child: Text(LocaleKeys.no_follow.tr()));
                       },
                     ),
                   ),

@@ -2,10 +2,12 @@ import 'package:blaze/components/default_app_bar.dart';
 import 'package:blaze/components/default_text_button.dart';
 import 'package:blaze/helpers/cubits/social_cubit.dart';
 import 'package:blaze/helpers/cubits/social_state.dart';
+import 'package:blaze/translations/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../components/default_format_field.dart';
 import '../../components/styles/icon_broken.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class EditProfileScreen extends StatelessWidget {
   const EditProfileScreen({Key? key}) : super(key: key);
@@ -32,7 +34,7 @@ class EditProfileScreen extends StatelessWidget {
             Navigator.pop(context);
           }
           ,
-           title: 'Edit Profiele',
+           title: LocaleKeys.edit_profile.tr(),
           actions: [
             defaultTextButton(function: (){
               if(cubit.coverImage != null){
@@ -44,7 +46,7 @@ class EditProfileScreen extends StatelessWidget {
               if(cubit.profileImage == null && cubit.coverImage == null){
                 cubit.updateUser(name: nameController.text, phone: phoneController.text, bio: bioController.text);  
               }
-            }, text: 'UPDATE'),
+            }, text: LocaleKeys.update.tr()),
             const SizedBox(width: 5.0),
           ]),
           body: SingleChildScrollView(
@@ -136,11 +138,12 @@ class EditProfileScreen extends StatelessWidget {
                     context: context,
                     controller: nameController,
                     keyboardType: TextInputType.emailAddress,
-                    label: "name",
+                    label: LocaleKeys.name.tr(),
                     prefix: IconBroken.User,
                     validate: (value) {
                       if (value!.isEmpty) {
-                        return 'please enter your name';
+                        String msg = LocaleKeys.please.tr() + LocaleKeys.name.tr(); 
+                        return msg;
                       }
                       return null;
                     },
@@ -152,11 +155,12 @@ class EditProfileScreen extends StatelessWidget {
                     context: context,
                     controller: bioController,
                     keyboardType: TextInputType.emailAddress,
-                    label: "bio",
+                    label: LocaleKeys.bio.tr(),
                     prefix: IconBroken.Info_Circle,
                     validate: (value) {
                       if (value!.isEmpty) {
-                        return 'please enter your bio';
+                        String msg = LocaleKeys.please.tr() + LocaleKeys.bio.tr(); 
+                        return msg;
                       }
                       return null;
                     },
@@ -168,11 +172,12 @@ class EditProfileScreen extends StatelessWidget {
                     context: context,
                     controller: phoneController,
                     keyboardType: TextInputType.emailAddress,
-                    label: "phone",
+                    label: LocaleKeys.phone.tr(),
                     prefix: IconBroken.Call,
                     validate: (value) {
                       if (value!.isEmpty) {
-                        return 'please enter your phone number';
+                        String msg = LocaleKeys.please.tr() + LocaleKeys.password.tr(); 
+                        return msg;
                       }
                       return null;
                     },
